@@ -1,0 +1,183 @@
+/* ============================================================
+   Noveld — static site stylesheet
+   Palette: navy #002850 · off-white #F7F9FB · pale #E1E7ED
+            accent #34A3E0 (large elements only) · slate #5A6B7E
+   Type:    IBM Plex Serif (display) · IBM Plex Sans (body)
+            IBM Plex Mono (numerals/eyebrows) — all self-hosted
+   ============================================================ */
+
+/* ---------- fonts ---------- */
+@font-face { font-family: "IBM Plex Sans"; src: url("fonts/IBMPlexSans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("fonts/IBMPlexSans-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("fonts/IBMPlexSans-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Serif"; src: url("fonts/IBMPlexSerif-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Serif"; src: url("fonts/IBMPlexSerif-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("fonts/IBMPlexMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("fonts/IBMPlexMono-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+
+/* ---------- tokens ---------- */
+:root {
+  --navy:   #002850;  /* deck: headings, body, dark bands */
+  --navy-2: #003A6E;  /* hover only, derived from navy */
+  --paper:  #F7F9FB;  /* screen-comfort off-white ground */
+  --pale:   #E1E7ED;  /* deck: pale fills, separators */
+  --pale-2: #C8D8E6;  /* deck: secondary pale fill */
+  --accent: #34A3E0;  /* deck: eyebrows, rules, accents */
+  --slate:  #6E8094;  /* deck value: decorative/large-scale use */
+  --slate-d:#5A6B7E;  /* AA-compliant body text (5.2:1) */
+  --white:  #FFFFFF;
+  --serif:  "IBM Plex Serif", Georgia, serif;
+  --sans:   "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --mono:   "IBM Plex Mono", ui-monospace, monospace;
+  --maxw:   1080px;
+}
+
+/* ---------- base ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--navy);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+h1, h2, .band-line, .band-h { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; }
+p { max-width: 62ch; }
+a { color: inherit; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--pale);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 108px; }
+.wordmark {
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  text-decoration: none; color: var(--navy);
+}
+
+.wordmark-mark { display: block; width: 64px; height: 64px; flex: none; }
+
+.wordmark-text {
+  font-family: var(--mono); font-weight: 500; font-size: 12.5px;
+  letter-spacing: 0.30em; line-height: 1;
+  /* letter-spacing adds trailing space after the last glyph; offset it so the
+     word stays optically centred under the mark */
+  text-indent: 0.30em;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; text-decoration: none; color: var(--slate-d);
+}
+.nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  color: var(--navy) !important;
+  border: 1.5px solid var(--navy); border-radius: 3px; padding: 7px 18px;
+}
+.nav-cta:hover { background: var(--navy); color: var(--white) !important; }
+
+/* ---------- hero ---------- */
+.hero { background: var(--paper); padding: 130px 0 110px; }
+/* deck treatment: eyebrows are accent blue, mono, letterspaced caps */
+.kicker {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+}
+.hero h1 { font-size: clamp(38px, 5.4vw, 60px); line-height: 1.12; margin-bottom: 28px; }
+.hero-sub { font-size: 19px; color: var(--slate-d); margin-bottom: 40px; }
+.btn {
+  display: inline-block; font-family: var(--sans); font-weight: 600; font-size: 15px;
+  background: var(--navy); color: var(--white); text-decoration: none;
+  padding: 14px 30px; border-radius: 3px;
+}
+.btn:hover { background: var(--navy-2); }
+.btn-light { background: var(--white); color: var(--navy); }
+.btn-light:hover { background: var(--pale); }
+
+/* ---------- navy band ---------- */
+.band { background: var(--navy); color: var(--white); padding: 72px 0; }
+.band-line { font-size: clamp(24px, 3.2vw, 34px); line-height: 1.35; max-width: 26em; }
+.band .accent { color: var(--accent); }
+.band-h { font-size: clamp(26px, 3.4vw, 36px); margin-bottom: 10px; }
+.band-sub { color: var(--pale); }
+.contact-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; flex-wrap: wrap;
+}
+
+/* ---------- sections ---------- */
+.section { padding: 100px 0; }
+.section.alt { background: var(--paper); border-top: 1px solid var(--pale); border-bottom: 1px solid var(--pale); }
+.eyebrow {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+}
+.section h2 { font-size: clamp(28px, 3.8vw, 40px); margin-bottom: 36px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.cols p { color: var(--slate-d); font-size: 17px; }
+
+/* ---------- pillars ---------- */
+.pillars { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 64px; }
+.pillar-num {
+  font-family: var(--mono); font-size: 14px; color: var(--accent);
+  display: block; margin-bottom: 14px;
+}
+.pillars h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.pillars p { font-size: 15px; color: var(--slate-d); }
+
+/* ---------- cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+/* deck treatment: a short accent rule sits above each column heading */
+.card {
+  background: var(--white); border: 1px solid var(--pale); border-radius: 4px;
+  padding: 34px 30px 36px;
+}
+.card::before {
+  content: ""; display: block; width: 56px; height: 3px;
+  background: var(--accent); margin-bottom: 22px;
+}
+.card h3 { font-size: 18px; font-weight: 600; margin-bottom: 14px; }
+.card p { font-size: 15px; color: var(--slate-d); }
+
+/* ---------- footer ---------- */
+.footer { background: var(--navy); color: var(--pale); padding: 36px 0; }
+.footer-inner { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; font-size: 13px; }
+.footer-note { max-width: 60ch; }
+
+.footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+
+.footer-lockup { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
+.footer-wordmark {
+  font-family: var(--mono); font-weight: 500; font-size: 15px;
+  letter-spacing: 0.30em; line-height: 1; text-indent: 0.30em;
+  color: var(--pale);
+}
+
+.footer-legal { display: block; }
+
+.footer-mark { display: block; width: 76px; height: 76px; flex: none; opacity: 0.95; }
+.footer-note a { color: var(--pale); text-decoration: none; }
+.footer-note a:hover { color: var(--accent); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .cols, .pillars, .cards { grid-template-columns: 1fr; }
+  .hero { padding: 90px 0 70px; }
+  .section { padding: 70px 0; }
+  .nav-links { gap: 20px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+}
+
+@media (max-width: 560px) {
+  .nav-inner { height: 92px; }
+  .wordmark-mark { width: 54px; height: 54px; }
+  .wordmark-text { font-size: 10.5px; letter-spacing: 0.30em; text-indent: 0.30em; }
+  .footer-mark { width: 64px; height: 64px; }
+  .footer-wordmark { font-size: 12.5px; }
+}
